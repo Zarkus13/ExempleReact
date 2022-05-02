@@ -2,13 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
         <Header color="green">
-          Bonjour !
+          <Link to="/test">Go to test page</Link>
         </Header>
 
         <img src={logo} className="App-logo" alt="logo" />

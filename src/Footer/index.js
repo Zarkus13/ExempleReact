@@ -1,60 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../Input';
+import { useNavigate } from 'react-router-dom';
 
-class Footer extends React.Component {
+const Footer = ({ backgroundColor }) => {
+  const navigation = useNavigate();
+  const [message, setMessage] = useState(localStorage.getItem('message') || '');
 
-  messageInputRef;
+  return (
+    <footer style={{ backgroundColor: backgroundColor }}>
+      <Input
+        value={message}
+        onValueChange={(event) => onMessageChange(event, setMessage)}
+        //inputRef={(ref) => { this.messageInputRef = ref }}
+      />
 
-  constructor(props) {
-    super(props);
+      <button onClick={() => onSendMessage(message, navigation)}>Send Message !</button>
+    </footer>
+  );
+};
 
-    this.state = {
-      message: localStorage.getItem('message') || ''
-    };
-  }
+const onMessageChange = (event, setMessage) => {
+  setMessage(event.target.value);
 
-  componentDidMount() {
-    this.messageInputRef.focus();
-  }
+  localStorage.setItem('message', event.target.value);
+};
 
-  render() {
-    return (
-      <footer style={{ backgroundColor: this.props.backgroundColor }}>
-        {this.state.num})
-
-        <Input
-          value={this.state.message}
-          onValueChange={this.onMessageChange}
-          inputRef={(ref) => { this.messageInputRef = ref }}
-        />
-
-        {/*<input
-          type="text"
-          value={this.state.message}
-          onChange={(event) => this.onMessageChange(event)}
-          ref={(ref) => { this.messageInputRef = ref }}
-        />*/}
-
-        <button onClick={this.onSendMessage}>Send Message !</button>
-      </footer>
-    )
-  }
-
-  onMessageChange = (event) => {
-    console.log('event', event.target.value);
-
-    this.setState({
-      message: event.target.value
-    });
-
-    localStorage.setItem('message', event.target.value);
-  };
-
-  onSendMessage = () => {
-    console.log('Sending : ' + this.state.message);
-  };
-}
+const onSendMessage = (message, navigation) => {
+  navigation('/test/' + message);
+};
 
 Footer.propTypes = {
   backgroundColor: PropTypes.oneOf(['red', 'blue']).isRequired
