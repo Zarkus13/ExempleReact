@@ -6,7 +6,7 @@ import TestPage from './pages/TestPage';
 const Routing = () =>
   <Routes>
     <Route path="/" element={<App />} />
-    <Route path="/test/:message" element={<TestPage />} />
-  </Routes>
+    <Route path="/test" element={<TestPage />} />
+  </Routes>;
 
 export default Routing;

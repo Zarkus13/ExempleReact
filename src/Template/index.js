@@ -1,11 +1,30 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Routing from '../routes';
+import App from '../App';
+import TestPage from '../pages/TestPage';
 
-const Template = ({ children }) =>
-  <div>
-    <header>Template header</header>
+const HomeNav = () =>
+  <div>Home page</div>;
 
-    {children}
-  </div>;
+const TestNav = () =>
+  <div>/test page</div>;
+
+const Template = () => {
+  return (
+    <div>
+      <header>Template header</header>
+
+      <nav>
+        <Routes>
+          <Route path="/" element={<HomeNav/>}/>
+          <Route path="/test/:message" element={<TestNav/>}/>
+        </Routes>
+      </nav>
+
+      <Routing/>
+    </div>
+  );
+};
 
 export default Template;

@@ -3,6 +3,7 @@ import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import TestPage from './pages/TestPage';
 
 const App = () => {
   return (
@@ -11,6 +12,8 @@ const App = () => {
         <Header color="green">
           <Link to="/test">Go to test page</Link>
         </Header>
+
+        <TestPage />
 
         <img src={logo} className="App-logo" alt="logo" />
 

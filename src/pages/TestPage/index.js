@@ -1,11 +1,19 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const TestPage = () => {
-  const params = useParams();
+  const messages = useSelector((state) => state.messages.list);
 
   return (
-    <div>Test page : {params.message}</div>
+    <div>
+      Test page !
+
+      <ul>
+        {messages.map((message, id) =>
+          <li key={id}>{message}</li>
+        )}
+      </ul>
+    </div>
   )
 };
 
